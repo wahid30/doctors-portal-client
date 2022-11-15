@@ -65,7 +65,7 @@ const SignUp = () => {
             )}
           </div>
           <input
-            className="btn btn-accent w-full"
+            className="btn btn-accent w-full mt-4"
             value="signup"
             type="submit"
           />
