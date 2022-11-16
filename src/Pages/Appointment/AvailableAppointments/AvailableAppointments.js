@@ -12,25 +12,25 @@ const AvailableAppointments = ({ selectedDate }) => {
   //   // use isLoading or use appointmentOptions=[]
   //   queryKey: ["appointmentOption"],
   //   queryFn: () =>
-  //     fetch("http://localhost:5000/appointmentOption").then((res) =>
+  //     fetch("http://localhost:5000/appointmentOptions").then((res) =>
   //       res.json()
   //     ),
   // });
 
-  const {} = useQuery({
+  const { data: appointmentOptions = [] } = useQuery({
     queryKey: ["appointmentOption"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/appointmentOption");
+      const res = await fetch("http://localhost:5000/appointmentOptions");
       const data = await res.json();
       return data;
     },
   });
 
   // useEffect(() => {
-  //   fetch("http://localhost:5000/appointmentOption")
+  //   fetch("http://localhost:5000/appointmentOptions")
   //     .then((res) => res.json())
   //     .then((data) => setAppointmentOptions(data));
-  // });
+  // },[]);
 
   return (
     <section className="mt-16">
