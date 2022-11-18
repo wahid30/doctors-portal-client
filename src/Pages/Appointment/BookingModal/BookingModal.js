@@ -1,8 +1,10 @@
 import { format } from "date-fns";
+import fi from "date-fns/esm/locale/fi/index.js";
 import React, { useContext } from "react";
+import toast from "react-hot-toast";
 import { AuthContext } from "../../../contexts/AuthProvider";
 
-const BookingModal = ({ treatment, setTreatment, selectedDate }) => {
+const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
   // console.log(selectedDate);
   // treatment is just another name of appointmentOption with name,slots,_id
   const { name, slots } = treatment;
@@ -27,7 +29,21 @@ const BookingModal = ({ treatment, setTreatment, selectedDate }) => {
     };
     console.log(booking);
     // TODO: send data to the server and once data is saved then close the modal and display success toast
-    setTreatment(null);
+    fetch("http://localhost:5000/bookings", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(booking),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          setTreatment(null);
+          toast.success("Booking Confirmed");
+          refetch();
+        }
+      });
   };
 
   return (
