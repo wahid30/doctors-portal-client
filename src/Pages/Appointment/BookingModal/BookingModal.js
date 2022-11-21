@@ -7,7 +7,7 @@ import { AuthContext } from "../../../contexts/AuthProvider";
 const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
   // console.log(selectedDate);
   // treatment is just another name of appointmentOption with name,slots,_id
-  const { name, slots } = treatment;
+  const { name, slots, price } = treatment;
   const date = format(selectedDate, "PP");
   const { user } = useContext(AuthContext);
 
@@ -26,6 +26,7 @@ const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
       slot,
       email,
       phone,
+      price,
     };
     console.log(booking);
     // TODO: send data to the server and once data is saved then close the modal and display success toast
