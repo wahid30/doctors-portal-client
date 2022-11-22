@@ -21,7 +21,11 @@ const DisplayError = () => {
       <p className="text-red-400">{error.statusText || error.message}</p>
       <h4 className="text-3xl">
         {" "}
-        Please <button onClick={handleLogOut}>Sign out</button> and log back in
+        Please{" "}
+        <button className="btn btn-sm btn-outline" onClick={handleLogOut}>
+          Sign out
+        </button>{" "}
+        and log back in
       </h4>
     </div>
   );
